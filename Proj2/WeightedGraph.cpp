@@ -8,6 +8,7 @@
 using namespace std;
 
 WeightedGraph::WeightedGraph(int size){
+    int n = size;
     graph.resize(size);
 }
 
@@ -24,10 +25,6 @@ void WeightedGraph::addEdge(string begin, string end, int weight){
     int e = index[end];
     graph[b].push_back(make_pair(e, weight));
 }
-
-/*vector<vector<pair<int, int>>> WeightedGraph::getGraph(){
-    return graph;
-}*/
 
 void WeightedGraph::txtInput(string file_name){
 
@@ -50,7 +47,12 @@ void WeightedGraph::txtInput(string file_name){
             line.clear();
         }
     }
+}
 
-    
+vector<vector<pair<int, int>>> WeightedGraph::getGraph(){
+    return graph;
+}
 
+map<string,int> WeightedGraph::getIndexMap(){
+    return index;
 }

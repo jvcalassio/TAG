@@ -17,8 +17,9 @@ class WeightedGraph{
         //um vetor com os codigos das materias
         WeightedGraph(int size);
         void addEdge(string begin, string end, int weight);
-        //vector<vector<pair<int, int>>> getGraph();
         void txtInput(string file_name);
+        vector<vector<pair<int, int>>> getGraph();
+        map<string, int> getIndexMap();
 
 };
 
