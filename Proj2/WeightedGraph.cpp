@@ -228,7 +228,7 @@ void WeightedGraph::generateCPImage() {
 }
 
 void WeightedGraph::generateTOImage() {
-    string to_print = "digraph CIC {\nrankdir=\"LR\";\nrank=\"same\"\n\nordering=\"out\";\n";
+    string to_print = "digraph CIC {\n";
     stack<int> s = getOrdenacao();
 
     while(!s.empty()) {

@@ -18,5 +18,4 @@ int main () {
     a.generateCPImage();
     a.generateTOImage();
     return 0;
-
 }
