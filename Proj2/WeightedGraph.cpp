@@ -8,7 +8,7 @@
 using namespace std;
 
 WeightedGraph::WeightedGraph(int size){
-    int n = size;
+    n = size;
     graph.resize(size);
 }
 
