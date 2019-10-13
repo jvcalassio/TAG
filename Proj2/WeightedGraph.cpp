@@ -23,7 +23,8 @@ void WeightedGraph::addEdge(string begin, string end, int weight){
 
     int b = index[begin];
     int e = index[end];
-    graph[b].push_back(make_pair(e, weight));
+    if(weight != 0)
+        graph[b].push_back(make_pair(e, weight));
 }
 
 void WeightedGraph::txtInput(string file_name){
