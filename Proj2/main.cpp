@@ -4,7 +4,6 @@
 
 using namespace std;
 
-
 int main () {
     
     WeightedGraph a(40);
@@ -14,6 +13,7 @@ int main () {
     map<string,int> map = a.getIndexMap();
 
     a.ordenacaoTopologica();
+    a.getCriticalPaths();
     a.generateDAGImage();
     a.generateCPImage();
     a.generateTOImage();

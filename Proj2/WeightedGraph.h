@@ -4,6 +4,7 @@
 #include <vector>
 #include <map>
 #include <stack>
+#include <queue>
 
 using namespace std;
 
@@ -16,13 +17,16 @@ class WeightedGraph{
         stack<int> ordenacao_topologica;
 
         void dot2img(string file);
-        bool searchEdge(vector<int> v, int i, int j);
+        bool searchEdge(queue<int> v, int i, int j);
+        bool contains(queue<int> v, queue<int> u);
+        void copyQueue(queue<int> &a, queue<int> &b);
+        int getPathSize(queue<int> a);
 
     public:
         //um vetor com os codigos das materias
         WeightedGraph(int size);
         vector<vector<pair<int, int>>> getGraph();
-        vector<vector<int>> getCriticalPaths();
+        vector<queue<int>> getCriticalPaths();
         map<string, int> getIndexMap();
         string getName(int n);
         stack<int> getOrdenacao();
