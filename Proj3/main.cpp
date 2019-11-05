@@ -21,7 +21,7 @@ int main () {
             cout << "Escola " << g.getCodigo() << " precisa de " << g.getHab1() << " e " << g.getHab2() << endl;
         }
     }
-    cout << endl << "EMPARELHAMENTO: " << endl;
+    cout << endl << "EMPARELHAMENTOS: " << endl;
     for(pair<Node,Node> par : graph.GaleShapley()){
         cout << "Professor " << par.first.getCodigo() << " na " << "Escola " << par.second.getCodigo() << endl;
     }
