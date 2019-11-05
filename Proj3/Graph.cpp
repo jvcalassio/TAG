@@ -65,6 +65,81 @@ vector<Node> Graph::getGraph() {
     return this->graph;
 }
 
+int getEscola(vector<Node> graph, int codigo){
+    int i = 0;
+    for(Node n : graph){
+        if(n.getTipo() == 1 && n.getCodigo() == codigo) return i;
+        i++;
+    }
+    return -1;
+}
+
+//retorna o primeiro professor livre
+int free_prof(vector<Node> graph){
+    for(int i = 0; i<graph.size(); i++){
+        if(graph[i].getTipo() == 0 && graph[i].free == true)
+            if(graph[i].count < graph[i].getPrefs().size()) return i;
+    }
+    return -1;
+}
+
+//homens = professores
+//mulheres = escolas
+vector<pair<Node,Node>> Graph::GaleShapley() {
+    
+    vector<pair<Node,Node>> emp;
+    vector<Node> graph = getGraph();
+
+    //inicializando os estados
+    for(int i = 0; i<graph.size(); i++){
+        graph[i].free = true;
+        if(graph[i].getHab2() != 0)
+            graph[i].free2 = true;
+        graph[i].count = 0;
+    }
+
+    //int index = free_prof(graph);
+
+    for(Node node : graph){
+        
+        //se o nó é um professor
+        if(node.getTipo() == 0){
+
+            Node* professor = &node;
+
+            for(int escola_pref : professor->getPrefs()){
+                
+                //Node* escola = getEscola(graph, pref);
+                Node* escola = &graph[getEscola(graph, escola_pref)];
+                if(escola->free == true){ //primeira vaga vazia
+                    if(professor->getHab1() >= escola->getHab1()){ //professor com habilidades suficientes
+                        emp.push_back(make_pair(*professor, *escola));
+                        professor->free = false;
+                        escola->free = false;
+                        break;
+                    }
+                    professor->count++;
+                }
+                else if(escola->free2 == true){ //segunda vaga vazia
+                    if(professor->getHab1() >= escola->getHab2()){ //professor com habilidades suficientes
+                        emp.push_back(make_pair(*professor, *escola));
+                        professor->free = false;
+                        escola->free2 = false;
+                        break;
+                    }
+                    professor->count++;
+                }
+                else
+                    professor->count++;
+            }
+            //professor->free = false;
+            //index = free_prof(graph);
+        }
+    }
+
+    return emp;
+}
+
 Node::Node(int tipo) {
     this->tipo = tipo;
 }

@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <utility>
 
 using namespace std;
 
@@ -15,6 +16,10 @@ class Node {
         vector<int> prefs; // preferencias, se professor
 
     public:
+        bool free;
+        bool free2; //segunda vaga, da escola
+        int count;  //contador pra saber por quais escolas o professor já foi recusado
+
         Node();
         Node(int tipo);
         int getCodigo();
@@ -38,6 +43,7 @@ class Graph {
     public:
         void txtInput(string file_name);
         vector<Node> getGraph();
+        vector<pair<Node,Node>> GaleShapley();
 };
 
 
